@@ -1,0 +1,51 @@
+# ---- Python ----
+__pycache__/
+*.py[cod]
+*$py.class
+
+# C extensions
+*.so
+
+# ---- Virtual environments ----
+.venv/
+venv/
+ENV/
+env/
+env.bak/
+
+# ---- Jupyter ----
+.ipynb_checkpoints/
+*.ipynb_save
+
+# ---- Logs & databases ----
+*.log
+*.sqlite3
+*.db
+
+# ---- OS / Editor files ----
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# ---- Build / Packaging ----
+*.egg-info/
+*.egg
+dist/
+build/
+.eggs/
+pip-wheel-metadata/
+*.manifest
+*.spec
+
+# ---- Testing ----
+.coverage
+htmlcov/
+.tox/
+.nox/
+.pytest_cache/
+coverage.xml
+
+# ---- Misc ----
+*.bak
+*.swp
