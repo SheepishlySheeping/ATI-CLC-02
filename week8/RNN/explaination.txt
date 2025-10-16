@@ -1,0 +1,17 @@
+The provided data csv consists of 3 columns/information fields: year, month & monthly mean total sunspot number. This is then visualized in a chart.
+The monthly mean total sunspot no. is scaled to range between 0 and 1, to normalize data and help with training stability and performance.
+Input samples are then created via the sliding-window method. A window of size 12 (according to sunspot cycles' yearly pattern, each element for a month's mean total sunspot no.); the steps_ahead is set at 1.
+-> 12 months of mean total sunspot no. are features and the next one's the label.
+The window slides forward, taking the next 12, and the one after that becomes the label. This is repeated for the entire csv.
+
+The 3288 input data is then separated into training and testing sets (which takes 10% / or 329 rows).
+
+A RNN model is created, includes three RNN layers, 50 hidden units each.
+Add a dense layer perceptron at the end for a single number output (the mean total sunspot no of next month).
+Use tanh activation function vecause input and output values are in the range from 0 to 1.
+The model is compiled with mean_squared_error loss function and the adam optimizer, common choices for regression tasks.
+
+After training, the model is used to make predictions on both training and testing sets.
+The RMSE is calculated for both, then compared. 
+Their values are pretty close. In other words, the model is not overfitted and generalizing well.
+Visualization between predictions and actual values show that while there are minor differences, but the overall cyclical trend is captured. 

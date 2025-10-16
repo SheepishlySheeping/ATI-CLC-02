@@ -1,0 +1,18 @@
+The provided csv contains a many rows with the following format: a number at the start, some special characters that follows and human words from the story Truyen Kieu.
+With the goal to create a dictionary, we remove the number and characters, then split the words via the white spaces inbetween them.
+Since machines only understand numbers, we use tokenization to map raw words with a number value (the value is the position of the first instance of the word within the dictionary previously mentioned).
+Punctuations should be treated as separated tokens.
+Much alike the window-sliding method, we creates n-grams, simply put, sequences that add one word after another until the end of the sentence.
+We repeat this for all sentences.
+Pad all sequences with leading zeros so that they are equal in length, the last element of each sequal is treated as a label (what word should come next, according to all previous elements).
+
+The LSTM model is created, 
+The first layer an embedding layer, with the purpose to show the "connection" between the words. They are initialized with random vectors, and as training continues, the vectors' values are adjusted so that they are closer ("in space") to each other, leading to (possibly) closer meaning ("Nang" reffering to "Kieu")
+The second layer is the LSTM layer, equipped with cells to help it remember information from previous words in the sequence.
+The final layer is the dense output layer with the softmax activator; and the size equal to that of the vacabulary. It distributes probabiity distribution over all the words in the dictionary, indicating likelihood of each word of being used in next position.
+
+The model is then trained with with a loss function (categorical_crossentropy for multi-class classification), adam optimizer, and a metric - accuracy.
+As previously mentioned, during training the model iteratively adjusts its internal weights to minimize the difference between its predicted next word and the actual next word in the training data.
+
+After training, the model can be used to generate text similar to the style of the original input (in this case, Truyen Kieu).
+It requires seed text (user-input, unfinished sequence) and find the next, most appropirate words according to steps above.
